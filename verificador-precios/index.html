@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Precios - Soporte & Ayuda / Price Checker Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --surface: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--surface);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        main {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+            flex: 1;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.75rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #475569;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(37, 99, 235, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #64748b;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #f1f5f9;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            background: #0b1120;
+        }
+
+        footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="app-badge">🏷️ Verificador de Precios / Price Checker</div>
+            <h1 id="header-title">Centro de Soporte y Ayuda</h1>
+            <p class="subtitle" id="header-subtitle">Verificación de precios, escaneo de códigos de barras y gestión de inventario para tu comercio.</p>
+            
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('es')">🇲🇽 Español</button>
+                <button class="lang-btn" onclick="setLang('en')">🇺🇸 English</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">✉️</div>
+                <h2 id="card-contact-title">Soporte Técnico</h2>
+                <p id="card-contact-desc">¿Tienes alguna duda o necesitas asistencia con la aplicación? Contáctanos directamente por correo electrónico.</p>
+                <a href="mailto:macedas856@gmail.com" class="btn">macedas856@gmail.com</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h2 id="card-privacy-title">Política de Privacidad</h2>
+                <p id="card-privacy-desc">Consulta cómo protegemos tus datos y garantizamos el almacenamiento 100% local en tu dispositivo.</p>
+                <a href="privacy.html" class="btn btn-outline" id="btn-privacy">Ver Política de Privacidad</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📄</div>
+                <h2 id="card-terms-title">Términos de Uso (EULA)</h2>
+                <p id="card-terms-desc">Revisa los términos de suscripción PRO, licencias y condiciones de uso de la aplicación.</p>
+                <a href="terms.html" class="btn btn-outline" id="btn-terms">Ver Términos de Uso</a>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="faq-section-title">Preguntas Frecuentes (FAQ)</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3 id="faq-1-q">¿Mis datos de catálogo de productos están seguros?</h3>
+                <p id="faq-1-a">Sí. La aplicación almacena el catálogo de productos (código EAN, nombre, precio) de forma 100% local en tu dispositivo utilizando una base de datos SQLite. No enviamos tu inventario a servidores externos.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 id="faq-2-q">¿Cómo funcionan las suscripciones PRO?</h3>
+                <p id="faq-2-a">Las suscripciones PRO desbloquean el escaneo ilimitado y la importación masiva desde Excel. Las suscripciones son gestionadas de forma segura a través de Apple App Store o Google Play Store y se renuevan automáticamente salvo cancelación 24 horas antes del fin del período.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 id="faq-3-q">¿Cómo puedo cancelar mi suscripción?</h3>
+                <p id="faq-3-b">Puedes administrar o cancelar tu suscripción en cualquier momento desde los ajustes de tu cuenta de Apple ID (iOS) o Google Play Store (Android).</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html" id="foot-home">Inicio / Soporte</a>
+            <a href="privacy.html" id="foot-privacy">Política de Privacidad</a>
+            <a href="terms.html" id="foot-terms">Términos de Uso</a>
+            <a href="https://github.com/Fernando1612/Verificador-Precios" target="_blank">GitHub Repo</a>
+        </div>
+        <p>&copy; 2026 Verificador de Precios. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const content = {
+            es: {
+                title: "Centro de Soporte y Ayuda",
+                subtitle: "Verificación de precios, escaneo de códigos de barras y gestión de inventario para tu comercio.",
+                contactTitle: "Soporte Técnico",
+                contactDesc: "¿Tienes alguna duda o necesitas asistencia con la aplicación? Contáctanos directamente por correo electrónico.",
+                privacyTitle: "Política de Privacidad",
+                privacyDesc: "Consulta cómo protegemos tus datos y garantizamos el almacenamiento 100% local en tu dispositivo.",
+                btnPrivacy: "Ver Política de Privacidad",
+                termsTitle: "Términos de Uso (EULA)",
+                termsDesc: "Revisa los términos de suscripción PRO, licencias y condiciones de uso de la aplicación.",
+                btnTerms: "Ver Términos de Uso",
+                faqTitle: "Preguntas Frecuentes (FAQ)",
+                faq1q: "¿Mis datos de catálogo de productos están seguros?",
+                faq1a: "Sí. La aplicación almacena el catálogo de productos (código EAN, nombre, precio) de forma 100% local en tu dispositivo utilizando una base de datos SQLite. No enviamos tu inventario a servidores externos.",
+                faq2q: "¿Cómo funcionan las suscripciones PRO?",
+                faq2a: "Las suscripciones PRO desbloquean el escaneo ilimitado y la importación masiva desde Excel. Las suscripciones son gestionadas de forma segura a través de Apple App Store o Google Play Store y se renuevan automáticamente salvo cancelación 24 horas antes del fin del período.",
+                faq3q: "¿Cómo puedo cancelar mi suscripción?",
+                faq3a: "Puedes administrar o cancelar tu suscripción en cualquier momento desde los ajustes de tu cuenta de Apple ID (iOS) o Google Play Store (Android)."
+            },
+            en: {
+                title: "Support & Help Center",
+                subtitle: "Price verification, barcode scanning, and inventory lookup for your retail business.",
+                contactTitle: "Technical Support",
+                contactDesc: "Have questions or need assistance with the app? Contact us directly via email.",
+                privacyTitle: "Privacy Policy",
+                privacyDesc: "Learn how we protect your data and ensure 100% local storage on your device.",
+                btnPrivacy: "View Privacy Policy",
+                termsTitle: "Terms of Use (EULA)",
+                termsDesc: "Review PRO subscription terms, licenses, and terms of use for the application.",
+                btnTerms: "View Terms of Use",
+                faqTitle: "Frequently Asked Questions (FAQ)",
+                faq1q: "Is my product catalog data secure?",
+                faq1a: "Yes. The application stores your product catalog (EAN code, name, price) 100% locally on your device using SQLite. We do not upload your inventory to external servers.",
+                faq2q: "How do PRO subscriptions work?",
+                faq2a: "PRO subscriptions unlock unlimited scanning and bulk Excel import. Subscriptions are securely processed via Apple App Store or Google Play Store and renew automatically unless canceled 24 hours prior to period end.",
+                faq3q: "How can I cancel my subscription?",
+                faq3a: "You can manage or cancel your subscription at any time in your Apple ID (iOS) or Google Play Store (Android) account settings."
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            if (lang === 'es') document.querySelectorAll('.lang-btn')[0].classList.add('active');
+            else document.querySelectorAll('.lang-btn')[1].classList.add('active');
+
+            const t = content[lang];
+            document.getElementById('header-title').innerText = t.title;
+            document.getElementById('header-subtitle').innerText = t.subtitle;
+            document.getElementById('card-contact-title').innerText = t.contactTitle;
+            document.getElementById('card-contact-desc').innerText = t.contactDesc;
+            document.getElementById('card-privacy-title').innerText = t.privacyTitle;
+            document.getElementById('card-privacy-desc').innerText = t.privacyDesc;
+            document.getElementById('btn-privacy').innerText = t.btnPrivacy;
+            document.getElementById('card-terms-title').innerText = t.termsTitle;
+            document.getElementById('card-terms-desc').innerText = t.termsDesc;
+            document.getElementById('btn-terms').innerText = t.btnTerms;
+            document.getElementById('faq-section-title').innerText = t.faqTitle;
+            document.getElementById('faq-1-q').innerText = t.faq1q;
+            document.getElementById('faq-1-a').innerText = t.faq1a;
+            document.getElementById('faq-2-q').innerText = t.faq2q;
+            document.getElementById('faq-2-a').innerText = t.faq2a;
+            document.getElementById('faq-3-q').innerText = t.faq3q;
+            document.getElementById('faq-3-b').innerText = t.faq3a;
+        }
+    </script>
+</body>
+</html>
